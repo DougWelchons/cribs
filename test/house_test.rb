@@ -39,6 +39,12 @@ class HouseTest < Minitest::Test
     assert_equal rooms, house.rooms
   end
 
+  def test_can_change_price_to_integer
+    house = House.new("$400000", "123 sugar lane")
+
+    assert_equal 400000, house.price_to_intiger
+  end
+
   def test_it_below_market_average_if_less_then_500000
     house = House.new("$400000", "123 sugar lane")
 
