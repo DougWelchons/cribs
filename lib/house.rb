@@ -37,5 +37,46 @@ class House
     {"price" => price_to_intiger,
      "address" => address}
   end
-  
+
+  def rooms_sorted_by_area
+    @rooms.sort_by {|room| room.area}.reverse
+  end
+
+  def price_per_square_foot
+    (price_to_intiger / area.to_f).round(2)
+  end
+
+  def sort_bedrooms
+    @bedrooms = @rooms.select do |room|
+      room.category == :bedroom
+    end
+  end
+
+  def sort_living_rooms
+    @living_rooms = @rooms.select do |room|
+      room.category == :living_room
+    end
+  end
+
+  def sort_basements
+    @basements = @rooms.select do |room|
+      room.category == :basement
+    end
+  end
+
+  def sort_rooms
+    sort_bedrooms
+    sort_living_rooms
+    sort_basements
+  end
+
+  def rooms_by_category
+    sort_rooms
+    category = {bedroom: @bedrooms,
+                living_room: @living_rooms,
+                basement: @basements}
+
+    category
+  end
+
 end
