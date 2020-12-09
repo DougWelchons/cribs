@@ -39,10 +39,16 @@ class HouseTest < Minitest::Test
     assert_equal rooms, house.rooms
   end
 
-  def test_it_above_market_average_if_above_500000
+  def test_it_below_market_average_if_less_then_500000
     house = House.new("$400000", "123 sugar lane")
 
     assert_equal false, house.above_market_average?
+  end
+
+  def test_it_above_market_average_if_more_then_500000
+    house = House.new("$600000", "123 sugar lane")
+
+    assert_equal true, house.above_market_average?
   end
 
   def test_it_can_show_rooms_by_category
@@ -81,8 +87,8 @@ class HouseTest < Minitest::Test
 
   def test_it_has_details_as_hash
     house = House.new("$400000", "123 sugar lane")
-
-    assert_eqial {"price" => 400000, "address" => "123 sugar lane"}, house.details
+    details = {"price" => 400000, "address" => "123 sugar lane"}
+    assert_equal details, house.details
   end
-  
+
 end
