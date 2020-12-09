@@ -149,4 +149,6 @@ class HouseTest < Minitest::Test
 
     assert_equal by_category, house.rooms_by_category
   end
+
+  #ran out of time to write tests for helper methods for iteration for.
 end
